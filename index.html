@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>病院の予約ページ</title>
+    <meta name="description" content="病院の予約ページ" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1>市立病院</h1>
+    <h2>患者の皆様へ</h2>
+    <h3>内科の診察について</h3>
+    <table border="1px" width="50%">
+      <tr>
+        <th>診療曜日</th>
+        <th>受付時間</th>
+        <th>診療開始</th>
+      </tr>
+      <tr>
+        <th>
+          総合内科
+          <span>(月・火・木・金)</span>
+          <br />消化器内科<span>(月・木)</span><br />循環器内科<span
+            >(月〜金)</span
+          >
+        </th>
+        <td>8:15 - 11:30</td>
+        <td>8:45 -</td>
+      </tr>
+
+      <tr>
+        <th>消化器内科<span>(火・水)</span></th>
+        <td>8:15 - 11:30</td>
+        <td>新患 8:45 - <br />予約 10:15 -</td>
+      </tr>
+
+      <tr>
+        <th>
+          循環器内科<span>(水)</span><br />＊出張医<span>(月・水・第1金)</span>
+        </th>
+        <td>8:15 - 11:30</td>
+        <td>10:00 -</td>
+      </tr>
+      <tr>
+        <th>呼吸器内科<span>(水・金)</span></th>
+        <td>8:15 - 11:30</td>
+        <td>9:00 -</td>
+      </tr>
+      <tr>
+        <th>神経精神科<span>(木)</span></th>
+        <td>午前8:15 - 11:30 <br />午後1:00 - 2:30</td>
+        <td>午前10:30 - <br />午後1:30 -</td>
+      </tr>
+    </table>
+    <h2>予約フォーム</h2>
+
+    <form onsubmit="showFormData(event)">
+      <div>
+        名前：
+        <input id="name" type="text" placeholder="例：田中太郎" /><br />
+        電話番号：
+        <input id="phone" type="tel" placeholder="例：090-1234-5678" /><br />
+        メールアドレス
+        <input
+          id="email"
+          type="email"
+          placeholder="例：tanaka.tarou@xxx.com"
+        /><br />
+        性別：
+        <input type="radio" name="gender" value="男" checked />男
+        <input type="radio" name="gender" value="女" />女<br />
+        受診する科：
+        <input
+          type="checkbox"
+          name="department"
+          value="総合内科"
+          checked
+        />総合内科
+        <input type="checkbox" name="department" value="消化器内科" />消化器内科
+        <input type="checkbox" name="department" value="循環器内科" />循環器内科
+        <input
+          type="checkbox"
+          name="department"
+          value="呼吸器内科"
+        />呼吸器内科<br />
+        予約したい時間：<select id="preferredTime" name="予約したい時間">
+          <option value="午前中">午前中</option>
+          <option value="午後">午後</option>
+        </select>
+        <br />
+        <textarea name="message" placeholder="受診にあたっての備考"></textarea
+        ><br /><br />
+      </div>
+      <input id="message" type="submit" value="送信する" />
+    </form>
+
+    <script>
+      function showFormData(event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const email = document.getElementById("email").value;
+        const gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        const departments = Array.from(
+          document.querySelectorAll('input[name="department"]:checked')
+        ).map((checkbox) => checkbox.value);
+        const preferredTime = document.getElementById("preferredTime").value;
+        const message = document.getElementById("message").value;
+
+        const formData = `
+              名前: ${name}
+              電話番号: ${phone}
+              メールアドレス: ${email}
+              性別: ${gender}
+              受診する科: ${departments.join(", ")}
+              予約したい時間: ${preferredTime}
+              備考: ${message}
+          `;
+
+        alert(formData);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+body {
+  background-color: #ffe0e0;
+}
+th {
+  background-color: #00f;
+  color: #fff;
+  text-align: left;
+  padding-left: 8px;
+}
+td {
+  background-color: #fff;
+  padding-left: 8px;
+}
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  font-family: "ヒラギノ明朝 ProN W6";
+}
+form div {
+  line-height: 1.7;
+  padding: 4px;
+  border: 1px solid #000;
+}
